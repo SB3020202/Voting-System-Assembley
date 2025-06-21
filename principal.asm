@@ -34,8 +34,8 @@ data segment
         lineSize        EQU 190                
 
         ; figuras desenhadas: o ecra tem 200 rows | 320 colunas, cada pixel esta em ordem na memoria a primeira linha 
-        ; do ecra é entao de 1 a 320, dai em diante se quero meter o meu quadrado no row 20 e coluna 230 fica 20 * 320 + 230
-        ; depois o mesmo espaçamento é usado para todos => 8000 (25 rows)
+        ; do ecra Ã© entao de 1 a 320, dai em diante se quero meter o meu quadrado no row 20 e coluna 230 fica 20 * 320 + 230
+        ; depois o mesmo espaÃ§amento Ã© usado para todos => 8000 (25 rows)
         square1     EQU 6660
         square2     EQU square1 + 8000
         square3     EQU square2 + 8000  
@@ -96,7 +96,7 @@ data segment
         votos_nulos     db 1 dup (00)
             
     ;***************************    Misc       *******************************************       
-        quantos_votos               db  1 dup (06)      ; comeca a 5 porque vai ser decrementado 6 vezes antes da votaçao
+        quantos_votos               db  1 dup (06)      ; comeca a 5 porque vai ser decrementado 6 vezes antes da votaÃ§ao
         bool_eleitoresCarregados    db  1 dup (00)       
         
         rectLength  dw  1 dup (squareSize)
@@ -114,8 +114,8 @@ data segment
                                     
         authors:
             db " Tiago leal 66181",         CR,LF,LF,LF,Tab
-            db "    Sidi brahim 63452",     CR,LF,LF,LF,Tab
-            db "  Guilherme Silva 64937",   "$"         
+            db "    Sidi brahim 66452",     CR,LF,LF,LF,Tab
+            db "  Guilherme Silva 66937",   "$"         
                                                                                          
                                         
     ;***************************  Ficheiros ***********************************************
@@ -171,14 +171,14 @@ start:
         
     ;*************************************************************************************************
     ; Nome:      printMenu
-    ; Descrição: Exibe o menu principal na tela, verificando se os dados de eleitores foram carregados. 
+    ; DescriÃ§Ã£o: Exibe o menu principal na tela, verificando se os dados de eleitores foram carregados. 
     ;
     ; Input:     N/A.
     ; Output:    N/A.
     ; Destroi:   N/A.
     ;*************************************************************************************************
     printMenu proc 
-        cmp     bool_eleitoresCarregados, 00     ; do enunciado: não pode entrar aqui se não estiverem carregados os dados dos eleitores
+        cmp     bool_eleitoresCarregados, 00     ; do enunciado: nÃ£o pode entrar aqui se nÃ£o estiverem carregados os dados dos eleitores
         je      print_menu
         
         mov     Dx, 0410h 
@@ -204,8 +204,8 @@ start:
     
     ;*************************************************************************************************
     ; Nome:      selectMenu
-    ; Descrição: Detecta cliques no menu principal e chama a função correspondente à opção escolhida,
-    ;            votar, gerir, créditos ou sair.  
+    ; DescriÃ§Ã£o: Detecta cliques no menu principal e chama a funÃ§Ã£o correspondente Ã  opÃ§Ã£o escolhida,
+    ;            votar, gerir, crÃ©ditos ou sair.  
     ;
     ; Input:     bool_eleitoresCarregados - 01 | 00 
     ; Output:    N/A.
@@ -273,7 +273,7 @@ start:
              
     ;*************************************************************************************************
     ; Nome:      frontOffice
-    ; Descrição: Gerencia a interface de votação e incrementa os votos que foram feitos, 
+    ; DescriÃ§Ã£o: Gerencia a interface de votaÃ§Ã£o e incrementa os votos que foram feitos, 
     ;            nulo, branco ou valido.
     ;
     ; Input:     N/A.
@@ -331,7 +331,7 @@ start:
     
     ;*************************************************************************************************
     ; Nome:      validaNumeroEleitor
-    ; Descrição: Valida se o número de eleitor fornecido se encontra , se sim, verifica se já votou.
+    ; DescriÃ§Ã£o: Valida se o nÃºmero de eleitor fornecido se encontra , se sim, verifica se jÃ¡ votou.
     ;
     ; Input:     Nenhum.
     ; Output:    Bx = 01 (nao encontrou eleitor/eleitor ja votou) | Bx = 00 (eleitor valido) 
@@ -370,9 +370,9 @@ start:
            
     ;*************************************************************************************************
     ; Nome:      showCandidates
-    ; Descrição: Exibe o menu de votacao nos candidatos, com o numero e nome do eleitor encontrado.
+    ; DescriÃ§Ã£o: Exibe o menu de votacao nos candidatos, com o numero e nome do eleitor encontrado.
     ;
-    ; Input:     Di - endereço do primeiro byte do eleitor a selecionado
+    ; Input:     Di - endereÃ§o do primeiro byte do eleitor a selecionado
     ; Output:    N/A. 
     ; Destroi:   N/A.
     ;*************************************************************************************************       
@@ -459,7 +459,7 @@ start:
     
     ;*************************************************************************************************
     ; Nome:      printByte
-    ; Descrição: Imprime um único byte (valor numérico) na tela no formato ASCII.
+    ; DescriÃ§Ã£o: Imprime um Ãºnico byte (valor numÃ©rico) na tela no formato ASCII.
     ;
     ; Input:     Al - valor a imprimir na tela
     ;            Dx - resto da divisao anterior
@@ -480,7 +480,7 @@ start:
         
     ;*************************************************************************************************
     ; Nome:      voteLoop
-    ; Descrição: Gerencia o loop de votação, detectando cliques e atualizando os votos selecionados
+    ; DescriÃ§Ã£o: Gerencia o loop de votaÃ§Ã£o, detectando cliques e atualizando os votos selecionados
     ;            retorna ao menu principal.
     ;
     ; Input:     N/A.
@@ -560,7 +560,7 @@ start:
     
     ;*************************************************************************************************
     ; Nome:      addVotesToCounters
-    ; Descrição: Adiciona os votos válidos aos contadores de cada candidato. Os votos estarao
+    ; DescriÃ§Ã£o: Adiciona os votos vÃ¡lidos aos contadores de cada candidato. Os votos estarao
     ;            negativos se tiverem selecionados
     ;
     ; Input:     voto1 a voto5 - 00 (candidato nao selecionado) | -1 (selecionado)
@@ -605,8 +605,8 @@ start:
     
     ;*************************************************************************************************
     ; Nome:      saveVotesToLog
-    ; Descrição: Salva as informações de votos nos logs com a formatação
-    ;            número eleitor TAB nome eleitor TAB data (com '-') ESPAÇO horário (com ':').
+    ; DescriÃ§Ã£o: Salva as informaÃ§Ãµes de votos nos logs com a formataÃ§Ã£o
+    ;            nÃºmero eleitor TAB nome eleitor TAB data (com '-') ESPAÃ‡O horÃ¡rio (com ':').
     ;
     ; Input:     Nenhum.
     ; Output:    Nenhum.  
@@ -708,7 +708,7 @@ start:
                        
     ;*************************************************************************************************
     ; Nome:      printByteToFile
-    ; Descrição: Escreve um único byte convertido para ASCII no ficheiro.
+    ; DescriÃ§Ã£o: Escreve um Ãºnico byte convertido para ASCII no ficheiro.
     ;
     ; Input:     Al - byte a escrever
     ;            Bx - handler ficheiro
@@ -733,7 +733,7 @@ start:
                                        
     ;*************************************************************************************************
     ; Nome:      backOffice
-    ; Descrição: Gera o menu de administração após validação da palavra-passe. Apenas prossegue se a 
+    ; DescriÃ§Ã£o: Gera o menu de administraÃ§Ã£o apÃ³s validaÃ§Ã£o da palavra-passe. Apenas prossegue se a 
     ;            passe for correta, senao podemos sair com ESC
     ;
     ; Input:     Nenhum.
@@ -758,7 +758,7 @@ start:
             mov     Cx, 09
             repe    cmpsb 
             jnz     not_equal                                 ; Flag zero metida a 0 se algum charactere n for igual
-            jmp     valid_user                                ; se for igual apresenta o próximo menu
+            jmp     valid_user                                ; se for igual apresenta o prÃ³ximo menu
         
         not_equal: 
             lea     Di, pass_input 
@@ -781,7 +781,7 @@ start:
     
     ;***************************************************************************************************
     ; Nome:      menuGerente
-    ; Descrição: Exibe o menu de gerenciamento, permitindo carregar eleitores apenas se ja nao tiverem 
+    ; DescriÃ§Ã£o: Exibe o menu de gerenciamento, permitindo carregar eleitores apenas se ja nao tiverem 
     ;            sido carregados.
     ;
     ; Input:     bool_eleitoresCarregados
@@ -862,7 +862,7 @@ start:
      
     ;***************************************************************************************************
     ; Nome:      carregarEleitoresMemoria
-    ; Descrição: Carrega os dados dos eleitores a partir de um ficheiro CSV para a estrutura lista_eleitores.
+    ; DescriÃ§Ã£o: Carrega os dados dos eleitores a partir de um ficheiro CSV para a estrutura lista_eleitores.
     ;
     ; Input:     Nenhum
     ; Output:    bool_eleitoresCarregados - 01   
@@ -886,7 +886,7 @@ start:
             lea     Dx, buffer
             xor     Ax, Ax    
             read_number_loop: 
-                mov     Cx, 01                       ; vamos querer sempre ler só 1 byte   
+                mov     Cx, 01                       ; vamos querer sempre ler sÃ³ 1 byte   
                 call    readFromFile                ; as strings teram sempre ',' portanto nao e necessario proteger com jc
                 cmp     [buffer], ','               ; Verificar se encontrou a virgula
                 je      read_number_fim             ; Finalizar ao encontrar a virgula
@@ -910,7 +910,7 @@ start:
             read_name_loop:
                 push    Cx                     
                 mov     Cx, 01
-                call    readFromFile                      ; quando nao ha carry e Ax ta a 00 é porque atingiu EOF, mas havera sempre CR LF
+                call    readFromFile                      ; quando nao ha carry e Ax ta a 00 Ã© porque atingiu EOF, mas havera sempre CR LF
                 pop     Cx
                 
                 cmp     [buffer], CR                      ; Encontrar o Carriage Return
@@ -922,7 +922,7 @@ start:
             read_name_fim:
                 mov     Al, 00
                 stosb 
-                loop     read_name_fim              ; preenche os espaços restantes com nulos (até 30)
+                loop     read_name_fim              ; preenche os espaÃ§os restantes com nulos (atÃ© 30)
                 stosb                               ; bit de voto inicializado a nulo
                 
                 mov     Cx, 01
@@ -941,7 +941,7 @@ start:
                                   
     ;***************************************************************************************************
     ; Nome:      mostrarResultados
-    ; Descrição: Exibe os resultados da votação obtidas até ao momento.
+    ; DescriÃ§Ã£o: Exibe os resultados da votaÃ§Ã£o obtidas atÃ© ao momento.
     ;
     ; Input:     Nenhum
     ; Output:    Nenhum   
@@ -1028,9 +1028,9 @@ start:
         
     ;***************************************************************************************************
     ; Nome:      printCandidato
-    ; Descrição: Imprime o nome de um candidato e o seu número de votos.
+    ; DescriÃ§Ã£o: Imprime o nome de um candidato e o seu nÃºmero de votos.
     ;
-    ; Input:     BX - posição do cursor, DX - nome candidato, CL - número de votos do candidato
+    ; Input:     BX - posiÃ§Ã£o do cursor, DX - nome candidato, CL - nÃºmero de votos do candidato
     ; Output:    Nenhum.   
     ; Destroi:   N/A.
     ;*************************************************************************************************** 
@@ -1050,7 +1050,7 @@ start:
 
         ;***************************************************************************************************
         ; Nome:      printCandidatesRect
-        ; Descrição: Desenha os retângulos correspondentes aos candidatos no modo gráfico.
+        ; DescriÃ§Ã£o: Desenha os retÃ¢ngulos correspondentes aos candidatos no modo grÃ¡fico.
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1063,7 +1063,7 @@ start:
             lea     Di, [square1]             
             print_squares:
                 call    drawSquare
-                add     Di, 8000              ; tecnicamente é 8000 menos rectLen mas foi metido push/pop Di
+                add     Di, 8000              ; tecnicamente Ã© 8000 menos rectLen mas foi metido push/pop Di
                 loop    print_squares
             
             pop     Di
@@ -1073,7 +1073,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      printContinueRect
-        ; Descrição: Desenha o retângulo associado ao botão "CONTINUAR".
+        ; DescriÃ§Ã£o: Desenha o retÃ¢ngulo associado ao botÃ£o "CONTINUAR".
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1097,7 +1097,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      printGerirLines
-        ; Descrição: Desenha linhas separadoras no menu de gerenciamento.
+        ; DescriÃ§Ã£o: Desenha linhas separadoras no menu de gerenciamento.
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1127,7 +1127,7 @@ start:
 
         ;***************************************************************************************************
         ; Nome:      printResults
-        ; Descrição: Exibe gráficos representando os votos de cada candidato.
+        ; DescriÃ§Ã£o: Exibe grÃ¡ficos representando os votos de cada candidato.
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1169,9 +1169,9 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      printRectResult
-        ; Descrição: Desenha um retângulo gráfico proporcional ao número de votos (x2 para melhor visualizacao).
+        ; DescriÃ§Ã£o: Desenha um retÃ¢ngulo grÃ¡fico proporcional ao nÃºmero de votos (x2 para melhor visualizacao).
         ;
-        ; Input:     DL - número de votos, Di - pixel inicial do retângulo
+        ; Input:     DL - nÃºmero de votos, Di - pixel inicial do retÃ¢ngulo
         ; Output:    Nenhum.   
         ; Destroi:   N/A.
         ;***************************************************************************************************
@@ -1186,9 +1186,9 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      cleanPixels
-        ; Descrição: Mete a preto os primeiros pixeis de todos os rectangulos desenhados.
+        ; DescriÃ§Ã£o: Mete a preto os primeiros pixeis de todos os rectangulos desenhados.
         ;
-        ; Input:     DL - número de votos, Di - pixel inicial do retângulo
+        ; Input:     DL - nÃºmero de votos, Di - pixel inicial do retÃ¢ngulo
         ; Output:    N/A.   
         ; Destroi:   N/A.
         ;***************************************************************************************************
@@ -1224,7 +1224,7 @@ start:
             
         ;***************************************************************************************************
         ; Nome:      init_mouse
-        ; Descrição: inicializa o rato.
+        ; DescriÃ§Ã£o: inicializa o rato.
         ;
         ; Input:     Nenhum.
         ; Output:    ax = 0FFFFH (successo) | 0 (falhou), Bx = number of mouse buttons.   
@@ -1239,7 +1239,7 @@ start:
     
         ;***************************************************************************************************
         ; Nome:      getClick
-        ; Descrição: Loop infinito ate rato ser premido (tecla esquerda).
+        ; DescriÃ§Ã£o: Loop infinito ate rato ser premido (tecla esquerda).
         ;
         ; Input:     Nenhum.
         ; Output:    Cx = Linha (coord y), DX = Coluna (coord x)   
@@ -1261,10 +1261,10 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      getKey
-        ; Descrição: Captura a tecla pressionada pelo utilizador.
+        ; DescriÃ§Ã£o: Captura a tecla pressionada pelo utilizador.
         ;
         ; Input:     Nenhum.
-        ; Output:    AX = Código da tecla pressionada   
+        ; Output:    AX = CÃ³digo da tecla pressionada   
         ; Destroi:   N/A.
         ;***************************************************************************************************   
         getKey Proc
@@ -1276,7 +1276,7 @@ start:
                               
         ;***************************************************************************************************
         ; Nome:      setCursorPosition
-        ; Descrição: Rotina que poe o cursor em Dx.
+        ; DescriÃ§Ã£o: Rotina que poe o cursor em Dx.
         ;
         ; Input:     Dh = linha (coord y), Dl = coluna (coord x)
         ; Output:    Nenhum.   
@@ -1296,7 +1296,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      setCursorWithSpace
-        ; Descrição: Rotina que poe o cursor em Dx e printa um espaco nesse sitio 
+        ; DescriÃ§Ã£o: Rotina que poe o cursor em Dx e printa um espaco nesse sitio 
         ;            (para limpar o que la estava antes).
         ;
         ; Input:     Dh = linha (coord y), Dl = coluna (coord x)
@@ -1324,7 +1324,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      printStr$
-        ; Descrição: Rotina que imprime uma string ate ao $ onde o cursor estiver.
+        ; DescriÃ§Ã£o: Rotina que imprime uma string ate ao $ onde o cursor estiver.
         ;
         ; Input:     Dx - string a imprimir
         ; Output:    Nenhum.   
@@ -1339,7 +1339,7 @@ start:
   
         ;***************************************************************************************************
         ; Nome:      setVideoMode
-        ; Descrição: Inicializa o modo de vídeo, usado para limpar ecra (apenas visual).
+        ; DescriÃ§Ã£o: Inicializa o modo de vÃ­deo, usado para limpar ecra (apenas visual).
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1354,7 +1354,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      setTextMode
-        ; Descrição: Inicializa o modo de texto, usado para limpar ecra (apenas visual).
+        ; DescriÃ§Ã£o: Inicializa o modo de texto, usado para limpar ecra (apenas visual).
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1369,7 +1369,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      printAscii
-        ; Descrição: printa o valor ascii dum byte no ecra.
+        ; DescriÃ§Ã£o: printa o valor ascii dum byte no ecra.
         ;
         ; Input:     Dl = valor numerico do byte.
         ; Output:    Nenhum.   
@@ -1385,7 +1385,7 @@ start:
                          
         ;***************************************************************************************************
         ; Nome:      clearLine
-        ; Descrição: Limpa uma linha de texto no modo de texto do vídeo, a linha é preenchida com espaços
+        ; DescriÃ§Ã£o: Limpa uma linha de texto no modo de texto do vÃ­deo, a linha Ã© preenchida com espaÃ§os
         ;
         ; Input:     DX = primeiro pixel da linha a ser limpa. (pixel = linha * 320)
         ; Output:    Nenhum.   
@@ -1417,7 +1417,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      writeDateTimeToLog
-        ; Descrição: Escreve a data e hora do voto (atuais) no ficheiro de log.
+        ; DescriÃ§Ã£o: Escreve a data e hora do voto (atuais) no ficheiro de log.
         ;
         ; Input:     Nenhum.
         ; Output:    Nenhum.   
@@ -1503,7 +1503,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      divideInt
-        ; Descrição: divide um inteiro em Ax, por Bx. (Dx é metido a 0)
+        ; DescriÃ§Ã£o: divide um inteiro em Ax, por Bx. (Dx Ã© metido a 0)
         ;
         ; Input:     Ax = numerador, Bx = denominador.
         ; Output:    Ax = quociente, Dx = resto (remainder).   
@@ -1523,10 +1523,10 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      saveTwoValuesTolog
-        ; Descrição: Escreve dois valores (dígitos) no arquivo de log.
-        ;            Converte cada dígito em ASCII e grava-os sequencialmente (Dx usado como buffer)
+        ; DescriÃ§Ã£o: Escreve dois valores (dÃ­gitos) no arquivo de log.
+        ;            Converte cada dÃ­gito em ASCII e grava-os sequencialmente (Dx usado como buffer)
         ;
-        ; Input:     AL = Valor para dividir em dois dígitos
+        ; Input:     AL = Valor para dividir em dois dÃ­gitos
         ; Output:    Nenhum.   
         ; Destroi:   N/A.
         ;*************************************************************************************************** 
@@ -1549,7 +1549,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      keyToContinue
-        ; Descrição: Exibe uma mensagem no ecrã para pressionar qualquer tecla e aguarda ate qualquer tecla
+        ; DescriÃ§Ã£o: Exibe uma mensagem no ecrÃ£ para pressionar qualquer tecla e aguarda ate qualquer tecla
         ;            ser clicada.
         ;
         ; Input:     N/A.
@@ -1569,7 +1569,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      clickToContinue
-        ; Descrição: Exibe uma mensagem no ecrã para clicar e aguarda ate o rato ser clicado.
+        ; DescriÃ§Ã£o: Exibe uma mensagem no ecrÃ£ para clicar e aguarda ate o rato ser clicado.
         ;
         ; Input:     N/A.
         ; Output:    N/A.   
@@ -1592,15 +1592,15 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      drawSquare
-        ; Descrição: Rotina que desenha um retangulo definido por rectHeight e rectLength
-        ;            verifica se o primeiro pixel está branco, nesse caso muda a cor para vermelho,
+        ; DescriÃ§Ã£o: Rotina que desenha um retangulo definido por rectHeight e rectLength
+        ;            verifica se o primeiro pixel estÃ¡ branco, nesse caso muda a cor para vermelho,
         ;            controla o numero de votos escolhidos pelo user ao adicionar/subtrair
         ; Input:
         ;   Si         - pixel superior esquerdo
         ;   rectHeight - eixo x do retangulo
         ;   rectLength - eixo y do retangulo
         ; Output  - N/A
-        ; Destrói - N/A
+        ; DestrÃ³i - N/A
         ;***************************************************************************************************
         drawSquare proc
             push    es
@@ -1613,7 +1613,7 @@ start:
             push    Bp
             mov     Bp, Sp
             
-            mov     Ax, 0A000h         ; documentaçao ->    A0000 - B1000	Video memory for vga, monochrome, and other adapters.
+            mov     Ax, 0A000h         ; documentaÃ§ao ->    A0000 - B1000	Video memory for vga, monochrome, and other adapters.
             mov     es, Ax             ; It is used by video mode 13h of INT 10h
             
             call    getPixelValue      ; Al fica com a cor do pixel
@@ -1684,10 +1684,10 @@ start:
 
         ;***************************************************************************************************
         ; Nome:      getPixelValue
-        ; Descrição: Obtém a cor do pixel na posição especificada.
+        ; DescriÃ§Ã£o: ObtÃ©m a cor do pixel na posiÃ§Ã£o especificada.
         ;
-        ; Input:     DI - pixel cuja cor será lida.
-        ; Output:    AL - Cor do pixel na posição Di.   
+        ; Input:     DI - pixel cuja cor serÃ¡ lida.
+        ; Output:    AL - Cor do pixel na posiÃ§Ã£o Di.   
         ; Destroi:   N/A.
         ;***************************************************************************************************
         getPixelValue proc
@@ -1708,11 +1708,11 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      getNumeroEleitor
-        ; Descrição: Recebe o número do eleitor como entrada do utilizador, 
-        ;            validando e exibindo erros se necessário.
+        ; DescriÃ§Ã£o: Recebe o nÃºmero do eleitor como entrada do utilizador, 
+        ;            validando e exibindo erros se necessÃ¡rio.
         ;
         ; Input:     Nenhum.
-        ; Output:    num_eleitor - Número do eleitor convertido para dois bytes.   
+        ; Output:    num_eleitor - NÃºmero do eleitor convertido para dois bytes.   
         ; Destroi:   N/A.
         ;***************************************************************************************************
         getNumeroEleitor proc
@@ -1788,10 +1788,10 @@ start:
                               
         ;***************************************************************************************************
         ; Nome:      printError
-        ; Descrição: Exibe uma mensagem de erro no ecrã e aguarda 
+        ; DescriÃ§Ã£o: Exibe uma mensagem de erro no ecrÃ£ e aguarda 
         ;            1 segundo antes de limpar a mensagem.
         ;
-        ; Input:     DX - Mensagem de erro a ser exibida (endereço)
+        ; Input:     DX - Mensagem de erro a ser exibida (endereÃ§o)
         ; Output:    Nenhum.   
         ; Destroi:   N/A.
         ;***************************************************************************************************                   
@@ -1812,11 +1812,11 @@ start:
                               
         ;***************************************************************************************************
         ; Nome:      addDigit
-        ; Descrição: Adiciona um dígito a num_eleitor. Bx sera incrementado a cada digito que o numero 
+        ; DescriÃ§Ã£o: Adiciona um dÃ­gito a num_eleitor. Bx sera incrementado a cada digito que o numero 
         ;            passar o maximo valor de word
         ;
-        ; Input:     Bx = 10 (para multiplicar) | >10 (numero introduzido é maior que word) 
-        ; Output:    num_eleitor - Atualizado com o novo dígito.
+        ; Input:     Bx = 10 (para multiplicar) | >10 (numero introduzido Ã© maior que word) 
+        ; Output:    num_eleitor - Atualizado com o novo dÃ­gito.
         ;            BX - Incrementado em caso de overflow.   
         ; Destroi:   N/A.
         ;***************************************************************************************************                   
@@ -1854,11 +1854,11 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      addDigit
-        ; Descrição: Adiciona um dígito a num_eleitor. Bx sera decrementado a cada digito que o numero, no caso
+        ; DescriÃ§Ã£o: Adiciona um dÃ­gito a num_eleitor. Bx sera decrementado a cada digito que o numero, no caso
         ;            de ter overflow, for apagado.
         ;
-        ; Input:     Bx = 10 (para dividir) | >10 (numero introduzido é maior que word) 
-        ; Output:    num_eleitor - Atualizado com menos um dígito.
+        ; Input:     Bx = 10 (para dividir) | >10 (numero introduzido Ã© maior que word) 
+        ; Output:    num_eleitor - Atualizado com menos um dÃ­gito.
         ;            BX - Decrementado em caso de overflow.   
         ; Destroi:   N/A.
         ;***************************************************************************************************                    
@@ -1887,9 +1887,9 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      getName
-        ; Descrição: Captura uma string de entrada do utilizador, nao deixa que o argumento seja vazio.
+        ; DescriÃ§Ã£o: Captura uma string de entrada do utilizador, nao deixa que o argumento seja vazio.
         ;
-        ; Input:     DI - Endereço onde a string será armazenada 
+        ; Input:     DI - EndereÃ§o onde a string serÃ¡ armazenada 
         ; Output:    BX - 01 (erro) | 00 (valido).   
         ; Destroi:   N/A.
         ;***************************************************************************************************                    
@@ -1950,9 +1950,9 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      clearString
-        ; Descrição: Limpa uma string, preenchendo-a com caracteres nulos (`0x00`).
+        ; DescriÃ§Ã£o: Limpa uma string, preenchendo-a com caracteres nulos (`0x00`).
         ;
-        ; Input:     DI - Endereço inicial da string.
+        ; Input:     DI - EndereÃ§o inicial da string.
         ;            CX - Tamanho da string.
         ; Output;    Nenhum.   
         ; Destroi:   N/A.
@@ -1970,7 +1970,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      wait1s
-        ; Descrição: espera 1 segundo, para podermos ver erros antes de serem apagados.
+        ; DescriÃ§Ã£o: espera 1 segundo, para podermos ver erros antes de serem apagados.
         ;
         ; Input:     Nenhum.
         ; Output;    Nenhum.   
@@ -1996,9 +1996,9 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      openFile
-        ; Descrição: Tenta Abrir um ficheiro no modo especificado.
+        ; DescriÃ§Ã£o: Tenta Abrir um ficheiro no modo especificado.
         ;
-        ; Input:     DX - Endereço do nome do ficheiro.
+        ; Input:     DX - EndereÃ§o do nome do ficheiro.
         ;            AL - Modo de abertura (ex.: READ, WR, READWR)
         ; Output;    AX - Handler ficheiro (sucesso) | codigo erro (falha).
         ;            CF - Flag de erro em caso de falha..   
@@ -2014,9 +2014,9 @@ start:
        
         ;***************************************************************************************************
         ; Nome:      createFile
-        ; Descrição: Tenta criar um ficheiro..
+        ; DescriÃ§Ã£o: Tenta criar um ficheiro..
         ;
-        ; Input:     DX - Endereço do nome do ficheiro.
+        ; Input:     DX - EndereÃ§o do nome do ficheiro.
         ; Output;    AX - Handler ficheiro (sucesso) | codigo erro (falha).
         ;            CF - Flag de erro em caso de falha..   
         ; Destroi:   Nenhum.
@@ -2031,7 +2031,7 @@ start:
 
         ;***************************************************************************************************
         ; Nome:      closeFile
-        ; Descrição: Tenta fechar um ficheiro.
+        ; DescriÃ§Ã£o: Tenta fechar um ficheiro.
         ;
         ; Input:     Bx - Handler ficheiro .
         ; Output;    Nenhum.   
@@ -2047,7 +2047,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      writeToFile
-        ; Descrição: Escreve para dentro de um ficheiro. 
+        ; DescriÃ§Ã£o: Escreve para dentro de um ficheiro. 
         ;
         ; Input:     Cx = 01 (printa 1 byte, buffer usado como argumento), senao printa Cx caracteres.
         ; Output;    Nenhum.   
@@ -2073,12 +2073,12 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      readFromFile
-        ; Descrição: Lê de um ficheiro. 
+        ; DescriÃ§Ã£o: LÃª de um ficheiro. 
         ;
         ; Input:     BX - Handler do ficheiro.
-        ;            CX - Número de bytes a ler.
-        ;            DX - Endereço do buffer de destino.
-        ; Output;    AX - Número de bytes lidos.   
+        ;            CX - NÃºmero de bytes a ler.
+        ;            DX - EndereÃ§o do buffer de destino.
+        ; Output;    AX - NÃºmero de bytes lidos.   
         ; Destroi:   Nenhum.
         ;****************************************************************************************************
         readFromFile proc
@@ -2095,10 +2095,10 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      fSeek
-        ; Descrição: mete o ponteiro dum ficheiro onde receber como argumento. (Dx metido a 0 = offset) 
+        ; DescriÃ§Ã£o: mete o ponteiro dum ficheiro onde receber como argumento. (Dx metido a 0 = offset) 
         ;
         ; Input:     BX - Handler do ficheiro.
-        ;            AL - Posição do ponteiro (00: início,02: fim).
+        ;            AL - PosiÃ§Ã£o do ponteiro (00: inÃ­cio,02: fim).
         ; Output;    Nenhum.   
         ; Destroi:   Nenhum.
         ;****************************************************************************************************
@@ -2121,7 +2121,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      loadMemoryToBin
-        ; Descrição: Salva a estrutura no ficheiro binario. 
+        ; DescriÃ§Ã£o: Salva a estrutura no ficheiro binario. 
         ;
         ; Input:     Nenhum.
         ; Output;    Nenhum.   
@@ -2191,7 +2191,7 @@ start:
         
         ;***************************************************************************************************
         ; Nome:      LoadDataFile
-        ; Descrição: abre o ficheiro binario e preenche a estrutura com o que tiver la
+        ; DescriÃ§Ã£o: abre o ficheiro binario e preenche a estrutura com o que tiver la
         ;            cria se nao existir. 
         ;
         ; Input:     Nenhum.
@@ -2231,7 +2231,7 @@ start:
          
         ;***************************************************************************************************
         ; Nome:      loadBinToMemory
-        ; Descrição: preenche a estrutura com o que tiver dentro do ficheiro binario
+        ; DescriÃ§Ã£o: preenche a estrutura com o que tiver dentro do ficheiro binario
         ;
         ; Input:     Nenhum.
         ; Output;    bool_eleitoresCarregados incrementado.   
@@ -2261,7 +2261,7 @@ start:
                 read_name_from_mem:
                     push    Cx                     
                     mov     Cx, 01
-                    call    readFromFile                      ; quando nao ha carry e Ax ta a 00 é porque atingiu EOF, mas havera sempre CR LF
+                    call    readFromFile                      ; quando nao ha carry e Ax ta a 00 Ã© porque atingiu EOF, mas havera sempre CR LF
                     pop     Cx
                     
                     cmp     [buffer], 00                      ; Encontrar o byte voto
