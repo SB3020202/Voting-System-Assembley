@@ -1,27 +1,21 @@
-# 🗳️ Voting System in x86 Assembly
-*A 32-bit NASM implementation of a simple voting system with Linux syscalls*
+# 🗳️ Sistema de Votação em Assembly x86
 
-## 📌 Table of Contents
-- [Features](#-features)
-- [Requirements](#-requirements)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [License](#-license)
+Sistema simples de votação desenvolvido em Assembly x86 (32-bit) para Linux
 
-## ✨ Features
-- Basic voting mechanism implementation
-- Console-based user interface
-- Results calculation and display
-- Designed for Linux environments
-
-## 🛠️ Requirements
-- Linux OS (or WSL for Windows users)
-- NASM (Netwide Assembler)
+## 📋 Pré-requisitos
+- Linux (ou WSL no Windows)
+- NASM instalado
 - GNU Linker (ld)
-- 32-bit libraries (for x86 compatibility)
 
-## 📥 Installation
-1. Install NASM on Debian/Ubuntu:
+## ⚙️ Como compilar e executar
+
 ```bash
-sudo apt-get update && sudo apt-get install nasm
+# Instalar dependências
+sudo apt-get install nasm gcc-multilib
+
+# Compilar
+nasm -f elf32 voting_system.asm -o voting.o
+ld -m elf_i386 voting.o -o voting
+
+# Executar
+./voting
