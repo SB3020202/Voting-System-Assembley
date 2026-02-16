@@ -1,6 +1,7 @@
 # 🗳️ x86 Assembly Voting System
 
 A complete voting system implementation using x86 Assembly (NASM syntax) for 32-bit Linux systems.
+Final Grade: 18.5/20
 
 ## 📌 Table of Contents
 - [Features](#-features)
