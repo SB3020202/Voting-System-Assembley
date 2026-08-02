@@ -30,3 +30,8 @@ Final Grade: 18.5/20
 ```bash
 sudo apt update
 sudo apt install nasm gcc-multilib
+
+### Authors
+
+- Guilherme Silva → [@guicdas](https://www.github.com/guicdas)
+- Sidi Brahim → [@SB3020202](https://github.com/SB3020202)
